@@ -4,9 +4,11 @@ class Router
 {
     protected array $routes = [];
     public Request $request;
-    public function __construct(Request $request)
+    public Response $response;
+    public function __construct(Request $request, Response $response)
     {
         $this->request = $request;
+        $this->response = $response;
     }
 
     public function get($path, $callback)
@@ -30,13 +32,41 @@ class Router
         $callback = $this->routes[$method][$path] ?? false;
 
         if($callback === false){
-            echo 'Page not found';
-            exit();
+
+            //Application::$app->response->setStatucCode(404);
+            $this->response->setStatucCode(404);
+            return 'Page not found';
         }
-        echo call_user_func($callback); // Вызываем колбэк функцию
+        if(is_string($callback)){
+
+           return $this->renderView($callback);
+        }
+        return call_user_func($callback); // Вызываем колбэк функцию
 
         /*        echo '<pre>';
         var_dump($this->routes);
         echo '</pre>';*/
+    }
+
+    public function renderView(string $view)
+    {
+        $layoutContent = $this->layoutContent();
+        $viewContent = $this->renderOnlyView($view);
+
+        return str_replace('{{content}}', $viewContent, $layoutContent);
+    }
+
+    protected function layoutContent()
+    {
+        ob_start();
+        include_once Application::$ROOT_PATH . "/views/layouts/main.php";
+        return ob_get_clean();
+    }
+
+    protected function renderOnlyView($view)
+    {
+        ob_start();
+        include_once  Application::$ROOT_PATH . "/views/$view.php";
+        return ob_get_clean();
     }
 }
