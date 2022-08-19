@@ -1,0 +1,15 @@
+{
+    "name": "nurkaydarov/framework",
+    "autoload": {
+        "psr-4": {
+            "app\\" : "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "nurkaydarov",
+            "email": "nurkaydarov@yandex.kz"
+        }
+    ],
+    "require": {}
+}
