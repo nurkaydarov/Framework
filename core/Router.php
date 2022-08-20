@@ -57,9 +57,9 @@ class Router
             $callback[0] = new $callback[0](); // app\controllers\SiteController()
 
         }
-        echo "<pre>";
+/*        echo "<pre>";
         var_dump($callback);
-        echo "</pre>";
+        echo "</pre>";*/
         return call_user_func($callback); // Вызываем колбэк функцию
 
         /*        echo '<pre>';
