@@ -60,7 +60,7 @@ class Router
 /*        echo "<pre>";
         var_dump($callback);
         echo "</pre>";*/
-        return call_user_func($callback); // Вызываем колбэк функцию
+        return call_user_func($callback, $this->request); // Вызываем колбэк функцию
 
         /*        echo '<pre>';
         var_dump($this->routes);
