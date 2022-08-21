@@ -1,6 +1,8 @@
 <?php
 namespace app\controllers;
+use app\core\Application;
 use app\core\Controller;
+use app\core\Request;
 
 class SiteController extends Controller
 {
@@ -10,9 +12,21 @@ class SiteController extends Controller
         $params = ['name' => 'Aktan Nurkaydarov'];
         return $this->render('home', $params);
     }
-
     public function contact()
     {
+        return $this->render('contact');
+    }
+
+    public function handleContact(Request $request)
+    {
+       $body = $request->getBody();
+        echo '<pre>';
+        var_dump($_POST);
+        echo '</pre>';
+       echo '<pre>';
+        var_dump($body);
+       echo '</pre>';
+
         return $this->render('contact');
     }
 }
