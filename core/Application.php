@@ -3,6 +3,8 @@ namespace app\core;
 class Application
 {
     public static Application $app; // App instance for response
+    public  Controller $controller;
+
     public static string $ROOT_PATH;
     public Router $router;
     public Request $request;
@@ -21,6 +23,14 @@ class Application
     public function run()
     {
         echo $this->router->resolve();
+    }
+
+    /**
+     * @return Controller
+     */
+    public function getController(): Controller
+    {
+        return $this->controller;
     }
 
 }

@@ -35,7 +35,7 @@ class Router
         $path = $this->request->getPath();
 
         //Получаем метод post || get
-        $method = $this->request->getMethod();
+        $method = $this->request->method();
 
         // Получаем метод
         $callback = $this->routes[$method][$path] ?? false;
@@ -54,7 +54,8 @@ class Router
         if(is_array($callback)){
             //$app->router->post('/contact', [SiteController::class [0], 'contact'[1]]);
 
-            $callback[0] = new $callback[0](); // app\controllers\SiteController()
+            Application::$app->controller = new $callback[0](); // app\controllers\SiteController()
+            $callback[0] = Application::$app->controller;
 
         }
 /*        echo "<pre>";
@@ -77,8 +78,9 @@ class Router
 
     protected function layoutContent()
     {
+        $layout = Application::$app->controller->layout;
         ob_start();
-        include_once Application::$ROOT_PATH . "/views/layouts/main.php";
+        include_once Application::$ROOT_PATH . "/views/layouts/$layout.php";
         return ob_get_clean();
     }
 
