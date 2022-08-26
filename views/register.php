@@ -25,13 +25,13 @@
                 <div class="col">
                     <div class="mb-3">
                         <label for="inputPassword" class="form-label">Password</label>
-                        <input type="password" class="form-control"  id ='inputPassword' placeholder="Type Password">
+                        <input type="password" class="form-control"  id ='inputPassword' placeholder="Type Password" name="password">
                     </div>
                 </div>
                 <div class="col">
                     <div class="mb-3">
                         <label for="inputConfirmPassword" class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control"  id ='inputPassword' placeholder="Confirm Password">
+                        <input type="password" class="form-control"  id ='inputPassword' placeholder="Confirm Password" name="passwordConfirm">
                     </div>
                 </div>
             </div>
