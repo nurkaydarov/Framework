@@ -1,4 +1,4 @@
-<h1>Register</h1>
+<h1>Login</h1>
 <form action="" method="POST">
 
     <div class="mb-3">
