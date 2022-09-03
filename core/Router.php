@@ -56,6 +56,7 @@ class Router
 
             Application::$app->controller = new $callback[0](); // app\controllers\SiteController()
             $callback[0] = Application::$app->controller;
+            //var_dump(Application::$app->controller);
 
         }
 /*        echo "<pre>";
