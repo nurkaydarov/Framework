@@ -13,11 +13,10 @@ class AuthController extends \app\core\Controller
     }
 
     public function register(Request $request){
-        $this->setLayout('auth');
+
+        $registerModel = new RegisterModel();
         if($request->isPOST())
         {
-            $registerModel = new RegisterModel();
-
             $registerModel->loadData($request->getBody());
 
 
@@ -25,11 +24,16 @@ class AuthController extends \app\core\Controller
             {
                 return 'Success';
             }
-            echo '<pre>';
+/*            echo '<pre>';
             var_dump($registerModel->errors);
-            echo '</pre>';
-            return 'Handle submitted data';
+            echo '</pre>';*/
+            return $this->render('register', [
+                'model' => $registerModel
+            ]);
         }
-        return $this->render('register');
+        $this->setLayout('auth');
+        return $this->render('register', [
+            'model' => $registerModel
+        ]);
     }
 }
