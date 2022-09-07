@@ -52,12 +52,12 @@ abstract class Model
                 {
                     $this->addError($attribute, self::RULE_EMAIL);
                 }
-                if($ruleName === self::RULE_MIN && $value < $rule['min'])
+                if($ruleName === self::RULE_MIN && strlen($value) < $rule['min'])
                 {
                     //var_dump($rule);
                     $this->addError($attribute, self::RULE_MIN, $rule);
                 }
-                if($ruleName === self::RULE_MAX && $value > $rule['max'])
+                if($ruleName === self::RULE_MAX && strlen($value) > $rule['max'])
                 {
                     //var_dump($rule);
                     $this->addError($attribute, self::RULE_MAX,$rule);
@@ -90,6 +90,15 @@ abstract class Model
             self::RULE_MAX => 'Max length of this field must be {max}',
             self::RULE_MATCH => 'This field must be same as {match}'
         ];
+    }
+    public function hasError($attribute)
+    {
+        return $this->errors[$attribute] ?? false;
+    }
+
+    public function getFirstError($attribute)
+    {
+        return $this->errors[$attribute][0] ?? false;
     }
 
 }
