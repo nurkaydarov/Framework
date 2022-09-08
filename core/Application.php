@@ -4,6 +4,7 @@ class Application
 {
     public static Application $app; // App instance for response
     public  Controller $controller;
+    public Database $database;
 
     public static string $ROOT_PATH;
     public Router $router;
@@ -17,6 +18,8 @@ class Application
         $this->request = new Request();
         $this->response = new Response();
         $this->router = new Router($this->request, $this->response);
+
+        $this->database = new Database();
 
     }
 
