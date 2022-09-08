@@ -10,7 +10,7 @@ class Application
     public Router $router;
     public Request $request;
     public Response $response;
-    public function __construct($rootPath)
+    public function __construct($rootPath, array $config)
     {
 
         self::$ROOT_PATH = $rootPath;
@@ -19,7 +19,7 @@ class Application
         $this->response = new Response();
         $this->router = new Router($this->request, $this->response);
 
-        $this->database = new Database();
+        $this->database = new Database($config['db']);
 
     }
 
